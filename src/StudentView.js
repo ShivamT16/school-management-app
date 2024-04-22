@@ -1,9 +1,10 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
-import { fetchStudents } from "./studentsSLice"
+import { fetchStudents } from "./studentsSlice"
 import StudentList from "./StudentList"
+import { Link } from "react-router-dom"
 
-const StudentView = () => {
+export const StudentView = () => {
     const dispatch = useDispatch()
     const students = useSelector((state) => state.students.students)
     const status = useSelector((state) => state.students.status)
