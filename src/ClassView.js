@@ -50,7 +50,7 @@ const ClassView = () => {
       <div>
         <ul>
           {sortedStudents.map((student) => (
-            <li key={student.id}>
+            <li key={student._id}>
               {student.name} - {student.gender} - Marks: {student.marks} -
               Attendance: {student.attendance}
             </li>

@@ -24,9 +24,13 @@ const SchoolView = () => {
     const averageMarks = totalMarks / totalStudents
 
     const topStudent = students.reduce((prev, current) => {
-      return parseFloat(current.marks) > parseFloat(prev.marks) ? current : prev
-    }, '')
+        return parseFloat(current.marks) > parseFloat(prev.marks)
+          ? current
+          : prev;
+      }, "");
 
+    console.log(topStudent)
+    
     dispatch(
       updateSchoolStats({
         totalStudents,
@@ -46,8 +50,7 @@ const SchoolView = () => {
       <p>Average Attendance: {schoolStats.averageAttendance.toFixed(2)}</p>
       <p>Average Marks: {schoolStats.averageMarks.toFixed(2)}</p>
       <p>
-        Top Student:{' '}
-        {schoolStats.topStudent ? schoolStats.topStudent.name : '-'}
+        Top Student: {schoolStats.topStudent ? schoolStats.topStudent.name : '-'}
       </p>
     </div>
   )

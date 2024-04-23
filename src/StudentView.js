@@ -11,7 +11,9 @@ export const StudentView = () => {
     const error = useSelector((state)=> state.students.error)
 
     useEffect(() => {
+      if(status === 'idle') {  
         dispatch(fetchStudents())
+    } 
     }, [status, dispatch] )
 
     return (
