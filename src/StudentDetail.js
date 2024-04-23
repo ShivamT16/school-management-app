@@ -1,4 +1,3 @@
-import React from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import { Link, useParams } from 'react-router-dom'
@@ -35,4 +34,4 @@ const StudentDetail = () => {
   )
 }
 
-export default StudentDetail
+export default StudentDetail;

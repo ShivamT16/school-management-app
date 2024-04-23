@@ -6,6 +6,9 @@ import StudentDetail from "./StudentDetail"
 import StudentForm from "./StudentForm"
 import './App.css';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
+import { TeacherView } from './TeacherView';
+import { TeacherDetail } from './TeacherDetail';
+import { TeacherForm } from './TeacherForm';
 
 function App() {
   return (
@@ -19,6 +22,9 @@ function App() {
               <ul>
                 <li>
                   <Link to='/'>Students</Link>
+                </li>
+                <li>
+                  <Link to='/teachers'>Faculty</Link>
                 </li>
                 <li>
                   <Link to='/classes'>Classes</Link>
@@ -37,6 +43,10 @@ function App() {
             <Route path='/students/:id' element={<StudentDetail />} />
             <Route path='/students/add' element={<StudentForm />} />
             <Route path='/students/edit/:id' element={<StudentForm />} />
+            <Route path='/teachers' element={<TeacherView />} />
+            <Route path='/teachers/:id' element={<TeacherDetail />} />
+            <Route path='/teachers/add' element={<TeacherForm />} />
+            <Route path='/teachers/edit/:id' element={<TeacherForm />} />  
           </Routes>
         </div>
       </Router>

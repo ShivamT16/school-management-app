@@ -5,7 +5,6 @@ export const fetchStudents = createAsyncThunk(
     'students/fetchStudents', 
     async () => {
         const response = await axios.get('https://44c96c33-fea4-4caa-8715-06e6bec7e90e-00-1pnnngfdaqtyh.janeway.replit.dev/students',)
-        // console.log(response.data)
         return response.data
     }
 )
