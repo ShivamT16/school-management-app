@@ -44,7 +44,7 @@ export const TeacherForm = () => {
       />
       <input
         type='email'
-        placeholder='Contact'
+        placeholder='Email'
         value={contact}
         onChange={(e) => setContact(e.target.value)}
       />

@@ -1,14 +1,15 @@
 import React from 'react';
-import ClassView from './ClassView';
-import SchoolView from './SchoolView';
-import { StudentView } from './StudentView';
-import StudentDetail from "./StudentDetail"
-import StudentForm from "./StudentForm"
-import './App.css';
 import { Link, Route, BrowserRouter as Router, Routes } from 'react-router-dom';
-import { TeacherView } from './TeacherView';
-import { TeacherDetail } from './TeacherDetail';
-import { TeacherForm } from './TeacherForm';
+import './App.css';
+
+import ClassView from './component/ClassView';
+import SchoolView from './component/school/SchoolView';
+import { StudentView } from './component/student/StudentView';
+import StudentDetail from "./component/student/StudentDetail"
+import StudentForm from "./component/student/StudentForm"
+import { TeacherView } from './component/teacher/TeacherView';
+import { TeacherDetail } from './component/teacher/TeacherDetail';
+import { TeacherForm } from './component/teacher/TeacherForm';
 
 function App() {
   return (

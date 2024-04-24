@@ -13,7 +13,7 @@ const SchoolView = () => {
   useEffect(() => {
     const totalStudents = students.length
     const totalAttendance = students.reduce(
-      (sum, student) => sum + parseFloat(student.attendance),
+      (sum, student) => sum + student.attendance,
       0,
     )
     const averageAttendance = totalAttendance / totalStudents
@@ -23,11 +23,7 @@ const SchoolView = () => {
     )
     const averageMarks = totalMarks / totalStudents
 
-    const topStudent = students.reduce((prev, current) => {
-        return parseFloat(current.marks) > parseFloat(prev.marks)
-          ? current
-          : prev;
-      }, "");
+    const topStudent = students.reduce((prev, current) => prev.marks > current.marks ? prev : current , "");
 
     console.log(topStudent)
     

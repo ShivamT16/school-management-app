@@ -43,6 +43,7 @@ const initialState = {
     students: [],
     status: "idle",
     error: null,
+    filterBy: "Grade",
     filter: "All",
     sortBy: "name"
 }
@@ -51,6 +52,9 @@ export const studentsSlice = createSlice({
     name: 'students',
     initialState,
     reducers: {
+        setFilterBy: (state, action) => {
+            state.filterBy = action.payload
+        },
         setFilter: (state, action) => {
             state.filter = action.payload
         },
@@ -114,4 +118,4 @@ export const studentsSlice = createSlice({
     }
 })
 
-export const {setFilter, setSortBy} = studentsSlice.actions;
+export const {setFilterBy, setFilter, setSortBy} = studentsSlice.actions;

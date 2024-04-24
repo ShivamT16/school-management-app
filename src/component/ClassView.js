@@ -1,14 +1,20 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
-import { setFilter, setSortBy } from './studentsSlice'
+import { setFilter, setFilterBy, setSortBy } from './student/studentsSlice'
 
 const ClassView = () => {
   const students = useSelector((state) => state.students.students)
+  const filterBy = useSelector((state) => state.students.filterBy )
   const filter = useSelector((state) => state.students.filter)
   const sortBy = useSelector((state) => state.students.sortBy)
   const dispatch = useDispatch()
+  
+  const studentsByGrade = students.filter((student) => {
+    if (filterBy === 'Grade') return true
+    return student.grade === filterBy
+  } )
 
-  const filteredStudents = students.filter((student) => {
+  const filteredStudents = [...studentsByGrade].filter((student) => {
     if (filter === 'All') return true
     return student.gender === filter
   })
@@ -19,6 +25,10 @@ const ClassView = () => {
     if (sortBy === 'attendance') return b.attendance - a.attendance
     return 0
   })
+
+  const handleGradeChange = (e) => {
+    dispatch(setFilterBy(e.target.value))
+  }
 
   const handleFilterChange = (e) => {
     dispatch(setFilter(e.target.value))
@@ -31,6 +41,24 @@ const ClassView = () => {
   return (
     <div>
       <h1>Class View</h1>
+      <div>
+      <label>Select Grade:</label>
+      <select value={filterBy} onChange={handleGradeChange}>
+      <option>Grade</option>
+      <option>1</option>
+      <option>2</option>
+      <option>3</option>
+      <option>4</option>
+      <option>5</option>
+      <option>6</option>
+      <option>7</option>
+      <option>8</option>
+      <option>9</option>
+      <option>10</option>
+      <option>11</option>
+      <option>12</option>
+      </select>
+      </div>
       <div>
         <label htmlFor='filter'>Filter by Gender:</label>
         <select id='filter' onChange={handleFilterChange} value={filter}>
@@ -49,12 +77,14 @@ const ClassView = () => {
       </div>
       <div>
         <ul>
-          {sortedStudents.map((student) => (
+          {sortedStudents.length > 0 ? sortedStudents.map((student) => (
             <li key={student._id}>
               {student.name} - {student.gender} - Marks: {student.marks} -
               Attendance: {student.attendance}
             </li>
-          ))}
+          ))
+        : <h3>No students found</h3>
+        }
         </ul>
       </div>
     </div>
