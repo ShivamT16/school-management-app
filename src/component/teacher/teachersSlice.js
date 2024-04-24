@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchTeachers = createAsyncThunk(
     'teachers/fetchTeachers',
     async() => {
-        const response = await axios.get('https://44c96c33-fea4-4caa-8715-06e6bec7e90e-00-1pnnngfdaqtyh.janeway.replit.dev/teachers')
+        const response = await axios.get('https://school-management-api-chi.vercel.app/teachers')
         return response.data
     }
 ) 
@@ -12,7 +12,7 @@ export const fetchTeachers = createAsyncThunk(
 export const addTeacherAsync = createAsyncThunk(
     'teachers/addTeacherAsync',
     async (newTeacher) => {
-        const response = await axios.post('https://44c96c33-fea4-4caa-8715-06e6bec7e90e-00-1pnnngfdaqtyh.janeway.replit.dev/teachers',newTeacher)
+        const response = await axios.post('https://school-management-api-chi.vercel.app/teachers',newTeacher)
         return response.data
     }
 )
@@ -20,7 +20,7 @@ export const addTeacherAsync = createAsyncThunk(
 export const updateTeacherAsync = createAsyncThunk(
     'teachers/updateTeacherAsync',
     async ({id, updatedTeacher}) => {
-        const response = await axios.put(`https://44c96c33-fea4-4caa-8715-06e6bec7e90e-00-1pnnngfdaqtyh.janeway.replit.dev/teachers/${id}`, updatedTeacher)
+        const response = await axios.put(`https://school-management-api-chi.vercel.app/teachers/${id}`, updatedTeacher)
         return response.data
     }
 )
@@ -28,7 +28,7 @@ export const updateTeacherAsync = createAsyncThunk(
 export const deleteTeacherAsync = createAsyncThunk(
     'teachers/deleteTeacherAsync',
     async (id) => {
-        const response = await axios.delete(`https://44c96c33-fea4-4caa-8715-06e6bec7e90e-00-1pnnngfdaqtyh.janeway.replit.dev/teachers/${id}`)
+        const response = await axios.delete(`https://school-management-api-chi.vercel.app/teachers/${id}`)
         return response.data
     }
 )
