@@ -24,8 +24,6 @@ const SchoolView = () => {
     const averageMarks = totalMarks / totalStudents
 
     const topStudent = students.reduce((prev, current) => prev.marks > current.marks ? prev : current , "");
-
-    console.log(topStudent)
     
     dispatch(
       updateSchoolStats({

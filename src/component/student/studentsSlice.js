@@ -22,7 +22,6 @@ export const addStudentAsync = createAsyncThunk(
 export const updateStudentAsync = createAsyncThunk(
     'students/updateStudentAsync',
     async ({ id, updatedStudent }) => {
-      console.log(id, updatedStudent)
       const response = await axios.put(`https://school-management-api-chi.vercel.app/students/${id}`,
         updatedStudent,
       )

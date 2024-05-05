@@ -14,7 +14,6 @@ import { TeacherForm } from './component/teacher/TeacherForm';
 function App() {
   return (
     <div className="App">
-     <h1>Redux-ToolKit</h1>
      <Router>
         <div>
           <div className='navbar'>
