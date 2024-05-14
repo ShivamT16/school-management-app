@@ -11,25 +11,24 @@ const StudentDetail = () => {
   )
 
   if (!student) {
-    return <div>Student not found.</div>
-  }
-
-  const handleDelete = (id) => {
-    dispatch(deleteStudentAsync(id))
+    return <h2>Student not found.</h2>
   }
 
   return (
-    <div>
+    <div className="view-main">
       <h2>Student Detail</h2>
+
+      <div className='detail-Page'>
       <p>Name: {student.name}</p>
       <p>Age: {student.age}</p>
+      <p>Gender: {student.gender} </p>
       <p>Grade: {student.grade}</p>
       <p>Attendance: {student.attendance}</p>
       <p>Marks: {student.marks}</p>
-      <Link to={`/students/edit/${student._id}`} state={student}>
-        Edit Details
-      </Link>
-      <button onClick={() => handleDelete(student._id)}>Delete</button>
+      <Link to={`/students/edit/${student._id}`} state={student}><button > Edit Details </button></Link>
+      <Link to="/" ><button onClick={() => dispatch(deleteStudentAsync(student._id))}>Delete</button></Link>
+      
+      </div>
     </div>
   )
 }

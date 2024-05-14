@@ -1,10 +1,13 @@
 import { useState } from 'react'
 import { useDispatch } from 'react-redux'
 import { addStudentAsync, updateStudentAsync } from './studentsSlice'
-import { useLocation } from 'react-router-dom'
+import { useLocation, useNavigate } from 'react-router-dom'
+import { ToastContainer, toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';
 
 const StudentForm = () => {
   let { state } = useLocation()
+  const navigate = useNavigate()
 
   const student = state ? state : null
 
@@ -15,7 +18,7 @@ const StudentForm = () => {
     student ? student.attendance : '',
   )
   const [marks, setMarks] = useState(student ? student.marks : '')
-  const [gender, setGender] = useState(student ? student.gender : 'Male')
+  const [gender, setGender] = useState(student ? student.gender : '')
   const dispatch = useDispatch()
 
   const handleSubmit = () => {
@@ -27,18 +30,21 @@ const StudentForm = () => {
       attendance,
       marks,
     }
-
-    if (student) {
-      dispatch(
-        updateStudentAsync({ id: student._id, updatedStudent: newStudent }),
-      )
-    } else {
-      dispatch(addStudentAsync(newStudent))
+    
+    if( !name || !age || !grade || !gender){
+      toast.warn("All details are required")
+    } else
+    { student ?
+      dispatch(updateStudentAsync({ id: student._id, updatedStudent: newStudent }))
+      : 
+      dispatch(addStudentAsync(newStudent));
+      navigate("/")
     }
+    
   }
 
   return (
-    <div>
+    <div className="view-main">
       <h2>{student ? 'Edit Student' : 'Add Student'}</h2>
       <input
         type='text'
@@ -106,6 +112,7 @@ const StudentForm = () => {
         </>
       )}
       <button onClick={handleSubmit}>{student ? 'Update' : 'Add'}</button>
+      <ToastContainer autoClose={2000} />
     </div>
   )
 }

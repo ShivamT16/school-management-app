@@ -37,15 +37,17 @@ const SchoolView = () => {
     dispatch(setTopStudent(topStudent))
   }, [students, dispatch])
 
-  return (
-    <div>
+  return ( 
+    <div className="view-main">
       <h1>School View</h1>
-      <p>Total Students: {schoolStats.totalStudents}</p>
-      <p>Average Attendance: {schoolStats.averageAttendance.toFixed(2)}</p>
-      <p>Average Marks: {schoolStats.averageMarks.toFixed(2)}</p>
-      <p>
+
+      <p className="view-List">Total Students: {schoolStats.totalStudents}</p>
+      <p className="view-List">Average Attendance: {schoolStats.averageAttendance.toFixed(2)}</p>
+      <p className="view-List">Average Marks: {schoolStats.averageMarks.toFixed(2)}</p>
+      <p className="view-List">
         Top Student: {schoolStats.topStudent ? schoolStats.topStudent.name : '-'}
       </p>
+
     </div>
   )
 }

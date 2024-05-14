@@ -1,7 +1,6 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchTeachers } from "./teachersSlice"
-import { TeachersList } from "./TeachersList"
 import { Link } from "react-router-dom"
 
 export const TeacherView = () => {
@@ -17,17 +16,23 @@ export const TeacherView = () => {
    }, [status,dispatch])
 
    return(
-    <div>
+    <div className="view-main">
+
       <h1>Teachers View </h1>
 
       {status === 'loading' && <p>Loading...</p>}
       {error && <p>Error: {error}</p>}
 
-      <TeachersList teachers={teachers} />
+      <Link className="add-link" to="/teachers/add">Add Teacher</Link>
 
-      <h3>
-        <Link to={`/teachers/add`}>Add Teacher</Link>
-      </h3>
+      {teachers.map((teacher) => (
+          <div className="view-List" key={teacher._id}>
+            <Link className="link" to={`/teachers/${teacher._id}`}>
+            Name: {teacher.name} || Subject: {teacher.subject} || Contact: {teacher.contact}
+            </Link>
+          </div>
+      ))}
+
     </div>
    )
 

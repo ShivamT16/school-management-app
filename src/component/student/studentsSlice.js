@@ -71,7 +71,6 @@ export const studentsSlice = createSlice({
         },
         [fetchStudents.rejected]: (state, action) => {
             state.status = 'error'
-            console.log(action.error.message)
             state.error = action.error.message
         },
         [addStudentAsync.pending]: (state) => {
@@ -83,7 +82,6 @@ export const studentsSlice = createSlice({
         },
         [addStudentAsync.rejected]: (state, action) => {
             state.status = 'error'
-            console.log(action.error.message)
             state.error = action.error.message
         },
         [updateStudentAsync.pending]: (state) => {

@@ -1,8 +1,8 @@
 import { useEffect } from "react"
 import { useDispatch, useSelector } from "react-redux"
 import { fetchStudents } from "./studentsSlice"
-import StudentList from "./StudentList"
 import { Link } from "react-router-dom"
+import "./styles.css"
 
 export const StudentView = () => {
     const dispatch = useDispatch()
@@ -17,17 +17,21 @@ export const StudentView = () => {
     }, [status, dispatch] )
 
     return (
-        <div>
-            <h1>Students View</h1>
+        <div className="view-main">
+            <h1>Student View</h1>
 
             {status === 'loading' && <p>loading...</p> }
             {error && <p>Error: {error}</p> }
 
-            <StudentList students={students} />
+            <Link className="add-link" to='/students/add'>Add New Student</Link>
 
-            <h3>
-            <Link to={`/students/add`}>Add student</Link>
-            </h3>
+            {students.map((student) => (
+          <div className="view-List" key={student._id}>
+            <Link className="link" to={`/students/${student._id}`}>
+              Name: {student.name} || Age: {student.age} || Gender: {student.gender} || Grade: {student.grade}
+            </Link>
+          </div>
+        ))}
 
         </div>
     )

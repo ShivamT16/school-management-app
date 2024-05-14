@@ -1,6 +1,7 @@
 import React from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { setFilter, setFilterBy, setSortBy } from './student/studentsSlice'
+import { Link } from 'react-router-dom'
 
 const ClassView = () => {
   const students = useSelector((state) => state.students.students)
@@ -21,6 +22,7 @@ const ClassView = () => {
 
   const sortedStudents = [...filteredStudents].sort((a, b) => {
     if (sortBy === 'name') return a.name.localeCompare(b.name)
+    if (sortBy === 'age') return b.age - a.age
     if (sortBy === 'marks') return b.marks - a.marks
     if (sortBy === 'attendance') return b.attendance - a.attendance
     return 0
@@ -39,10 +41,11 @@ const ClassView = () => {
   }
 
   return (
-    <div>
+    <div className="view-main">
       <h1>Class View</h1>
-      <div>
-      <label>Select Grade:</label>
+      <div className="class-View">
+
+      <label>|Select Grade:</label>
       <select value={filterBy} onChange={handleGradeChange}>
       <option>Grade</option>
       <option>1</option>
@@ -58,35 +61,36 @@ const ClassView = () => {
       <option>11</option>
       <option>12</option>
       </select>
-      </div>
-      <div>
-        <label htmlFor='filter'>Filter by Gender:</label>
+
+        <label htmlFor='filter'>|Filter by Gender:</label>
         <select id='filter' onChange={handleFilterChange} value={filter}>
           <option value='All'>All</option>
           <option value='Male'>Boys</option>
           <option value='Female'>Girls</option>
         </select>
-      </div>
-      <div>
-        <label htmlFor='sortBy'>Sort by:</label>
+      
+        <label htmlFor='sortBy'>|Sort by:</label>
         <select id='sortBy' onChange={handleSortChange} value={sortBy}>
           <option value='name'>Name</option>
+          <option value='age' >Age</option>
           <option value='marks'>Marks</option>
           <option value='attendance'>Attendance</option>
         </select>
+
       </div>
+     
       <div>
-        <ul>
           {sortedStudents.length > 0 ? sortedStudents.map((student) => (
-            <li key={student._id}>
-              {student.name} - {student.gender} - Marks: {student.marks} -
-              Attendance: {student.attendance}
-            </li>
+            <div className="view-List" key={student._id}>
+            <Link className="link" to={`/students/${student._id}`}>  
+            Name: {student.name} || Age: {student.age} || Gender: {student.gender} || Grade: {student.grade}
+              </Link>  
+            </div>
           ))
         : <h3>No students found</h3>
         }
-        </ul>
       </div>
+    
     </div>
   )
 }

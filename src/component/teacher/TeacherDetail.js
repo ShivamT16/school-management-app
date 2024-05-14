@@ -11,23 +11,21 @@ export const TeacherDetail = () => {
   )
 
   if (!teacher) {
-    return <div>Teacher not found.</div>
-  }
-
-  const handleDelete = (id) => {
-    dispatch(deleteTeacherAsync(id))
+    return <h2>Teacher not found.</h2>
   }
 
   return (
-    <div>
+    <div className="view-main">
       <h2>Teacher Detail</h2>
+
+      <div className='detail-Page'>
       <p>Name: {teacher.name}</p>
       <p>Subject: {teacher.subject}</p>
       <p>Contact: {teacher.contact}</p>
-      <Link to={`/teachers/edit/${teacher._id}`} state={teacher}>
-        Edit Details
-      </Link>
-      <button onClick={() => handleDelete(teacher._id)}>Delete</button>
+      <Link to={`/teachers/edit/${teacher._id}`} state={teacher}><button> Edit Details </button></Link>
+      <button onClick={() => dispatch(deleteTeacherAsync(id))}>Delete</button>
+      </div>
+
     </div>
   )
 }

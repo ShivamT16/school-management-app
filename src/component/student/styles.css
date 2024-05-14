@@ -1,0 +1,35 @@
+.view-main{
+    margin: 0% 20% 1%;
+}
+.view-List{
+    border-bottom: 2px solid palevioletred;
+    text-align: left;
+    margin: 1% 10%;
+    padding: 1% 2%;
+    font-size: large;
+}
+.add-link{
+    text-decoration: none;
+    color: blueviolet;
+    font-size: larger;
+}
+.link{
+    text-decoration: none;
+    color: black
+}
+.detail-Page{
+    border: 2px solid palevioletred;
+    background-color: antiquewhite;
+    padding: 0% 4% 2%;
+    text-align: left;
+    font-size: large;
+}
+.class-View{
+    display: flex;
+    gap: 2%;
+    border-bottom: 3px solid salmon;
+    text-align: left;
+    margin: 1% 10% 2%;
+    padding: 1% 2%;
+    font-size: large;    
+}

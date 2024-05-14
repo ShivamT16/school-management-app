@@ -1,11 +1,13 @@
 import { useState } from "react"
 import { useDispatch } from "react-redux"
-import { useLocation } from "react-router-dom"
+import { useLocation, useNavigate } from "react-router-dom"
 import { addTeacherAsync, updateTeacherAsync } from "./teachersSlice"
+import { ToastContainer, toast } from "react-toastify"
 
 export const TeacherForm = () => {
     let {state} = useLocation()
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     const teacher = state ? state : null
 
@@ -19,16 +21,20 @@ export const TeacherForm = () => {
             subject,
             contact
         }
-      if(teacher) {
-        dispatch(updateTeacherAsync({id: teacher._id, updatedTeacher: newTeacher}))
+
+      if(!name || !subject || !contact) {
+        toast.warn("All fields are required")
       }
       else {
-        dispatch(addTeacherAsync(newTeacher))
+        teacher ?
+        dispatch(updateTeacherAsync({id: teacher._id, updatedTeacher: newTeacher})) :
+        dispatch(addTeacherAsync(newTeacher));
+        navigate("/teachers")
       }
     }
 
     return(
-        <div>
+        <div className="view-main">
              <h2>{teacher ? 'Edit Teacher' : 'Add Teacher'}</h2>
       <input
         type='text'
@@ -49,6 +55,7 @@ export const TeacherForm = () => {
         onChange={(e) => setContact(e.target.value)}
       />
       <button onClick={handleSubmit} >{teacher ? "Update" : "Add"}</button>
+      <ToastContainer autoClose={2000} />
         </div>
     )
 }
