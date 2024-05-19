@@ -21,7 +21,7 @@ function App() {
         <NavLink className="navLink" to='/classes'>Classes</NavLink>
         <NavLink className="navLink" to='/teachers'>Faculty</NavLink>
         <NavLink className="navLink" to='/school'>School</NavLink>
-        <NavLink className="navLink" to='https://github.com/ShivamT16/school-management-app' >GitHub</NavLink>
+        <NavLink className="navLink" to='https://github.com/ShivamT16/school-management-app' target="_blank" >GitHub</NavLink>
       </nav>
      <Routes>
       <Route path='/school' element={<SchoolView />} />
